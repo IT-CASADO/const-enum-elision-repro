@@ -27,5 +27,9 @@ stays in the output, and webpack fails because a const enum has no runtime expor
 | 22.2.7 | 22.2.8 | fails |
 | 22.3.0 | 22.3.0 | fails |
 
+The constructor parameter is only one way to get there: any runtime value (for example a class) imported in the
+same statement and used only in type positions, such as `private x: PeriodFormatter | undefined`, triggers the same
+rewrite.
+
 Not needed to reproduce: a barrel, tsconfig `paths`, or any non-default compiler option.
 Workarounds: a regular `enum`, or importing the const enum in a separate import statement.
